@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header, main, footer {
+    background-color: beige;
+    margin: 0 auto;
+    width: 900px;
+}
+
+header {
+    border-bottom: 5px solid black;
+}
+
+main {
+    flex-grow: 2;
+}
+
+footer {
+    border-top: 5px solid black;
+}
