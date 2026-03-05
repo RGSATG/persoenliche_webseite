@@ -4,6 +4,8 @@
 }
 
 body {
+    font-family: arial;
+    background-color: teal;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -11,13 +13,27 @@ body {
 }
 
 header, main, footer {
-    background-color: beige;
+    background-color: white;
+    padding: 15px;
     margin: 0 auto;
     width: 900px;
 }
 
 header {
+    background-color: orange;
     border-bottom: 5px solid black;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav > ul {
+    list-style: none;
+    display: flex;
+    gap: 10px;
 }
 
 main {
