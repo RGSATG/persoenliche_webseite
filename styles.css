@@ -30,6 +30,11 @@ nav {
     align-items: center;
 }
 
+nav > h1 > a, nav > ul > li > a {
+    text-decoration: none;
+    color: black;
+}
+
 nav > ul {
     list-style: none;
     display: flex;
