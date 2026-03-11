@@ -115,3 +115,13 @@ button:hover:before {
     background-color: black;
     border-radius: 10px;
 }
+
+#notenspiel {
+    height: 88px;
+    background: repeating-linear-gradient(
+        white,
+        white 14px,
+        black 14px,
+        black 15px
+    );
+}
