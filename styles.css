@@ -172,3 +172,7 @@ button:hover:before {
     top: 0px;
 }
 
+#timer {
+    font-size: 50px;
+    justify-self: center;
+}

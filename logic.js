@@ -8,6 +8,10 @@ function colorChange() {
 //Code für Notenspiel
 const notenspiel = document.getElementById("notenspiel");
 const noteInput = document.getElementById("noteInput");
+const timer = document.getElementById("timer");
+const speedometer = document.getElementById("speedometer");
+let averageSpeed = 0;
+let startTime;
 let note;
 let pitches = ["A", "B", "C", "D", "E", "F", "G"]
 let currentPitchArray = [];
@@ -33,6 +37,7 @@ noteInput.addEventListener("input", () => {
     });
     if (correct) {
             noteInput.value = null;
+            getAverageSpeed();
             loadNotes();
     }
 });
@@ -61,6 +66,29 @@ function loadNotes() {
         notePosition++;
         currentPitchArray.push(currentPitch);
     }
+    speedometer.innerText = averageSpeed;
+    startTimer();
+}
+
+function startTimer() {
+    timer.innerText = 0;
+    startTime = new Date()
+    setInterval(() => {
+        timer.innerText = getTimerTime();
+    }, 1000);
+}
+
+function getTimerTime() {
+    return Math.floor((new Date() - startTime) / 1000);
+}
+
+function getAverageSpeed() {
+    let currentSpeed = Math.round(calculateNoteNumber() / (getTimerTime() / 60));
+    if (averageSpeed !== 0) {
+            averageSpeed = (averageSpeed + currentSpeed) / 2;
+        } else {
+            averageSpeed = currentSpeed;
+        }
 }
 
 calculateNoteNumber();
