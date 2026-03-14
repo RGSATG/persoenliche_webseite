@@ -14,21 +14,24 @@ let currentPitchArray = [];
 
 noteInput.addEventListener("input", () => {
     const valueArray = noteInput.value.toUpperCase().split("");
+    let correct = true;
     currentPitchArray.forEach((note, index) => {
         const inputPitch = valueArray[index];
         const currentNote = document.getElementById((index + 1).toString());
         if (inputPitch == null) {
             currentNote.classList.remove("correct");
             currentNote.classList.remove("incorrect");
+            correct = false;
         } else if (inputPitch === currentPitchArray[index]) {
                 currentNote.classList.add("correct");
                 currentNote.classList.remove("incorrect");
         } else {
             currentNote.classList.add("incorrect");
             currentNote.classList.remove("correct");
+            correct = false;
         }
     });
-    if (valueArray.length === currentPitchArray.length) {
+    if (correct) {
             noteInput.value = null;
             loadNotes();
     }
