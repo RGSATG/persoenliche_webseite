@@ -136,6 +136,14 @@ button:hover:before {
     position: relative;
 }
 
+.correct {
+    background-color: green;
+}
+
+.incorrect {
+    background-color: red;
+}
+
 .A {
     top: 45px;
 }
@@ -164,7 +172,3 @@ button:hover:before {
     top: 0px;
 }
 
-#buttonContainer {
-    display: none;
-    flex-direction: row;
-}
