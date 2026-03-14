@@ -1,18 +1,40 @@
+//Code für Farbenwechsler
 const colors = ["Green", "Aquamarine", "Blue", "Chocolate", "DarkOrange", "Fuchsia", "Gold", "Indigo"]
-var pitch;
 
 function colorChange() {
     document.getElementById("chameleon").style.backgroundColor = colors[Math.floor(Math.random() * 8)];
 };
 
-function getPitch() {
-    pitch = (Math.floor(Math.random() * 11) * 7.5);
-    document.getElementById("note").style.display = "block";
-    document.getElementById("note").style.top = pitch + "px";
-    document.getElementById("note").style.backgroundColor = "black";
-    document.getElementById("startButton").style.display = "none";
-    document.getElementById("buttonContainer").style.display = "flex";
+//Code für Notenspiel
+const notenspiel = document.getElementById("notenspiel");
+let noteNumber;
+let note;
+let pitches = ["A", "B", "C", "D", "E", "F", "G"]
+
+function calculateNoteNumber() {
+    noteNumber = notenspiel.offsetWidth / 50 + 1; 
 }
+
+function getRandomPitch() {
+    let pitch = pitches[Math.floor(Math.random() * 7)];
+    return pitch;
+}
+
+function loadNotes() {
+    let notePosition = 1;
+    while (noteNumber != notePosition) {
+        note = document.createElement("span");
+        note.classList.add("note");
+        note.classList.add(getRandomPitch());
+        note.classList.add(notePosition);
+        notenspiel.appendChild(note);    
+        notePosition++;
+        console.log(note);
+    }
+}
+
+calculateNoteNumber();
+loadNotes();
 
 function gameLost() {
         document.getElementById("note").style.backgroundColor = "red";

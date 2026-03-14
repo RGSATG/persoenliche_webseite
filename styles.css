@@ -121,20 +121,47 @@ button:hover:before {
     background: repeating-linear-gradient(
         white,
         white 14px,
-        black 14px,
+        black 14.9px,
         black 15px
     );
 }
 
-#note {
-    display: none;
-    height: 14px;
+.note {
+    display: inline-block;
+    height: 15px;
     width: 20px;
+    margin: 0 15px;
     background-color: black;
     border-radius: 15px;
     position: relative;
+}
+
+.A {
     top: 45px;
-    left: 40px;
+}
+
+.B {
+    top: 37.5px;
+}
+
+.C {
+    top: 30px;
+}
+
+.D {
+    top: 22.5px;
+}
+
+.E {
+    top: 15px;
+}
+
+.F {
+    top: 7.5px;
+}
+
+.G {
+    top: 0px;
 }
 
 #buttonContainer {
