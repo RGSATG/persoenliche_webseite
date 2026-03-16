@@ -14,7 +14,7 @@ const startButton = document.getElementById("startButton");
 let averageSpeed = 0;
 let startTime;
 let note;
-let pitches = ["A", "B", "C", "D", "E", "F", "G"]
+let notesArray = ["A", "B", "C", "D", "E", "F", "G"]
 let currentPitchArray = [];
 
 noteInput.addEventListener("input", () => {
@@ -27,7 +27,7 @@ noteInput.addEventListener("input", () => {
             currentNote.classList.remove("correct");
             currentNote.classList.remove("incorrect");
             correct = false;
-        } else if (inputPitch === currentPitchArray[index]) {
+        } else if (inputPitch === currentPitchArray[index][0]) {
                 currentNote.classList.add("correct");
                 currentNote.classList.remove("incorrect");
         } else {
@@ -48,7 +48,7 @@ function calculateNoteNumber() {
 }
 
 function getRandomPitch() {
-    let pitch = pitches[Math.floor(Math.random() * 7)];
+    let pitch = notesArray[Math.floor(Math.random() * 7)] + Math.floor(Math.random() * 2);
     return pitch;
 }
 
@@ -58,7 +58,11 @@ function loadNotes() {
     notenspiel.innerHTML = "";
     currentPitchArray = [];
     while (calculateNoteNumber() != notePosition) {
-        currentPitch = getRandomPitch();
+        let newPitch = getRandomPitch();
+        while (newPitch === currentPitch) {
+            newPitch = getRandomPitch();
+        }
+        currentPitch = newPitch;
         note = document.createElement("span");
         note.classList.add("note");
         note.classList.add(currentPitch);

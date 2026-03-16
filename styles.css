@@ -131,6 +131,8 @@ button:hover:before {
         black 14.9px,
         black 15px
     );
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .note {
@@ -150,33 +152,60 @@ button:hover:before {
 .incorrect {
     background-color: red;
 }
-
-.A {
-    top: 45px;
+.C0 {
+    top: 82.5px;
 }
 
-.B {
-    top: 37.5px;
-}
-
-.C {
+.C1 {
     top: 30px;
 }
 
-.D {
+.D0 {
+    top: 74px;
+}
+
+.D1 {
     top: 22.5px;
 }
 
-.E {
+.E0 {
+    top: 67.5px;
+}
+
+.E1 {
     top: 15px;
 }
 
-.F {
+.F0 {
+    top: 60px;
+}
+
+.F1 {
     top: 7.5px;
 }
 
-.G {
+.G0 {
+    top: 52.5px;
+}
+
+.G1 {
     top: 0px;
+}
+
+.A0 {
+    top: 45px;
+}
+
+.A1 {
+    top: -7.5px;
+}
+
+.B0 {
+    top: 37.5px;
+}
+
+.B1 {
+    top: -15px;
 }
 
 #timer {
