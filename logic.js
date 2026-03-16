@@ -10,6 +10,7 @@ const notenspiel = document.getElementById("notenspiel");
 const noteInput = document.getElementById("noteInput");
 const timer = document.getElementById("timer");
 const speedometer = document.getElementById("speedometer");
+const startButton = document.getElementById("startButton");
 let averageSpeed = 0;
 let startTime;
 let note;
@@ -91,5 +92,9 @@ function getAverageSpeed() {
         }
 }
 
-calculateNoteNumber();
-loadNotes();
+function startGame() {
+    calculateNoteNumber();
+    loadNotes();
+    noteInput.focus();
+    startButton.style.display = "none";
+}
