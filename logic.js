@@ -44,7 +44,7 @@ noteInput.addEventListener("input", () => {
 });
 
 function calculateNoteNumber() {
-    return notenspiel.offsetWidth / 50 + 1; 
+    return Math.floor(notenspiel.offsetWidth / 55 + 1); 
 }
 
 function getRandomPitch() {
@@ -56,6 +56,11 @@ function loadNotes() {
     let notePosition = 1;
     let currentPitch;
     notenspiel.innerHTML = "";
+    let clef = document.createElement("img");
+    clef.src = "img/violin_clef.svg";
+    clef.alt = "Violinschlüsel";
+    clef.id = "violin_clef";
+    notenspiel.appendChild(clef);
     currentPitchArray = [];
     while (calculateNoteNumber() != notePosition) {
         let newPitch = getRandomPitch();
@@ -66,6 +71,13 @@ function loadNotes() {
         note = document.createElement("span");
         note.classList.add("note");
         note.classList.add(currentPitch);
+        if (currentPitch === "B1" || currentPitch === "D0") {
+            note.classList.add("ledger_line_below");
+        } else if (currentPitch === "G1") {
+            note.classList.add("ledger_line_above");
+        } else if (currentPitch === "C0" || currentPitch === "A1") {
+            note.classList.add("ledger_line_center");
+        }
         note.id = notePosition;
         notenspiel.appendChild(note);    
         notePosition++;

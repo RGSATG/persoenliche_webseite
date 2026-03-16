@@ -124,6 +124,7 @@ button:hover:before {
 }
 
 #notenspiel {
+    position: relative;
     height: 88px;
     background: repeating-linear-gradient(
         white,
@@ -133,6 +134,7 @@ button:hover:before {
     );
     margin-top: 20px;
     margin-bottom: 20px;
+    padding-left: 65px;
 }
 
 .note {
@@ -143,6 +145,38 @@ button:hover:before {
     background-color: black;
     border-radius: 15px;
     position: relative;
+}
+
+.ledger_line_above:before {
+    position: relative;
+    top: -15px;
+    left: -5px;
+    display: inline-block;
+    width: 150%;
+    height: 1px;
+    content: "";
+    background-color: inherit;
+}
+
+.ledger_line_center:before {
+    position: relative;
+    top: -7.5px;
+    left: -5px;
+    display: inline-block;
+    width: 150%;
+    height: 1px;
+    content: "";
+    background-color: inherit;
+}
+
+.ledger_line_below:after {
+    position: relative;
+    left: -5px;
+    display: inline-block;
+    width: 150%;
+    height: 1px;
+    content: "";
+    background-color: inherit;
 }
 
 .correct {
@@ -211,4 +245,11 @@ button:hover:before {
 #timer {
     font-size: 43px;
     justify-self: center;
+}
+
+#violin_clef {
+    position: absolute;
+    left: 0;
+    top: -6px;
+    height: 105px;
 }
