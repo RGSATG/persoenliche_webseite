@@ -102,7 +102,7 @@ function getTimerTime() {
 function getAverageSpeed() {
     let currentSpeed = Math.round(calculateNoteNumber() / (getTimerTime() / 60));
     if (averageSpeed !== 0) {
-            averageSpeed = (averageSpeed + currentSpeed) / 2;
+            averageSpeed = Math.round((averageSpeed + currentSpeed) / 2);
         } else {
             averageSpeed = currentSpeed;
         }
