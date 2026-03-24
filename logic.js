@@ -11,10 +11,13 @@ const noteInput = document.getElementById("noteInput");
 const timer = document.getElementById("timer");
 const speedometer = document.getElementById("speedometer");
 const startButton = document.getElementById("startButton");
+const clefArray = ["violin", "bass"]
+let clef;
 let averageSpeed = 0;
 let startTime;
 let note;
-let notesArray = ["A", "B", "C", "D", "E", "F", "G"]
+let notesArray = ["bD2", "bE2", "bF2", "bG2", "bA2", "bB2", "bC3", "bD3", "bE3", "bF3", "bG3", "bA3", "bB3", "vB3", "bC4", "vC4", "bD4", "vD4", "vE4", "vF4", "vG4", "vA4", "vB4", "vC5", "vD5", "vE5", "vF5", "vG5", "vA5", "vB5"]
+
 let currentPitchArray = [];
 
 noteInput.addEventListener("input", () => {
@@ -27,7 +30,7 @@ noteInput.addEventListener("input", () => {
             currentNote.classList.remove("correct");
             currentNote.classList.remove("incorrect");
             correct = false;
-        } else if (inputPitch === currentPitchArray[index][0]) {
+        } else if (inputPitch === currentPitchArray[index][1]) {
                 currentNote.classList.add("correct");
                 currentNote.classList.remove("incorrect");
         } else {
@@ -48,34 +51,45 @@ function calculateNoteNumber() {
 }
 
 function getRandomPitch() {
-    let pitch = notesArray[Math.floor(Math.random() * 7)] + Math.floor(Math.random() * 2);
+    let pitch = notesArray[Math.floor(Math.random() * notesArray.length)];
     return pitch;
+}
+
+function setClef() {
+    clef = clefArray[Math.floor(Math.random() * 2)]
 }
 
 function loadNotes() {
     let notePosition = 1;
     let currentPitch;
     notenspiel.innerHTML = "";
-    let clef = document.createElement("img");
-    clef.src = "img/violin_clef.svg";
-    clef.alt = "Violinschlüsel";
-    clef.id = "violin_clef";
-    notenspiel.appendChild(clef);
+    let clefSign = document.createElement("img");
+    setClef();
+    if (clef === "violin") {
+        clefSign.src = "img/violin_clef.svg";
+        clefSign.alt = "Violinschlüsel";
+        clefSign.id = "violin_clef";
+    } else if (clef === "bass") {
+        clefSign.src = "img/bass_clef.svg";
+        clefSign.alt = "Basschlüssel";
+        clefSign.id = "bass_clef";
+    }
+    notenspiel.appendChild(clefSign);
     currentPitchArray = [];
-    while (calculateNoteNumber() != notePosition) {
+    while (calculateNoteNumber() !== notePosition) {
         let newPitch = getRandomPitch();
-        while (newPitch === currentPitch) {
+        while (newPitch === currentPitch || newPitch[0] != clef[0]) {
             newPitch = getRandomPitch();
         }
         currentPitch = newPitch;
         note = document.createElement("span");
         note.classList.add("note");
         note.classList.add(currentPitch);
-        if (currentPitch === "B1" || currentPitch === "D0") {
+        if (currentPitch === "bD4" || currentPitch === "bF2" || currentPitch === "vD4" || currentPitch === "vB5") {
             note.classList.add("ledger_line_below");
-        } else if (currentPitch === "G1") {
+        } else if (currentPitch === "bD2" || currentPitch === "bD4" || currentPitch === "vB3" || currentPitch === "vG5") {
             note.classList.add("ledger_line_above");
-        } else if (currentPitch === "C0" || currentPitch === "A1") {
+        } else if (currentPitch === "bE2" || currentPitch === "bC4" || currentPitch === "vC4" || currentPitch === "vA5") {
             note.classList.add("ledger_line_center");
         }
         note.id = notePosition;
