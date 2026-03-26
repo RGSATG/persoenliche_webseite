@@ -11,12 +11,14 @@ const noteInput = document.getElementById("noteInput");
 const timer = document.getElementById("timer");
 const speedometer = document.getElementById("speedometer");
 const startButton = document.getElementById("startButton");
+const einstellungen = document.getElementById("einstellungen");
+const optionH = document.getElementById("optionH");
+const optionB = document.getElementById("optionB");
 const clefArray = ["violin", "bass"]
 let clef;
 let averageSpeed = 0;
 let startTime;
 let note;
-let notesArray = ["bD2", "bE2", "bF2", "bG2", "bA2", "bB2", "bC3", "bD3", "bE3", "bF3", "bG3", "bA3", "bB3", "vB3", "bC4", "vC4", "bD4", "vD4", "vE4", "vF4", "vG4", "vA4", "vB4", "vC5", "vD5", "vE5", "vF5", "vG5", "vA5", "vB5"]
 
 let currentPitchArray = [];
 
@@ -30,7 +32,7 @@ noteInput.addEventListener("input", () => {
             currentNote.classList.remove("correct");
             currentNote.classList.remove("incorrect");
             correct = false;
-        } else if (inputPitch === currentPitchArray[index][1]) {
+        } else if (inputPitch === currentPitchArray[index][0]) {
                 currentNote.classList.add("correct");
                 currentNote.classList.remove("incorrect");
         } else {
@@ -51,7 +53,29 @@ function calculateNoteNumber() {
 }
 
 function getRandomPitch() {
+    let notesArray;
+    if (optionB.checked) {
+        notesArray = ["A", "B", "C", "D", "E", "F", "G"]
+    }
+    else {
+        notesArray = ["A", "H", "C", "D", "E", "F", "G"]
+    }
     let pitch = notesArray[Math.floor(Math.random() * notesArray.length)];
+    if (clef === "violin") {
+        if (pitch === "B" || pitch === "H") {
+            pitch += Math.floor(Math.random() * 3) + 3;
+        } else {
+            pitch += (Math.floor(Math.random() * 2) + 4);
+        }
+    } else if (clef === "bass") {
+        if (pitch === "D") {
+            pitch += (Math.floor(Math.random() * 3) + 2);
+        } else if (pitch === "C") {
+            pitch += (Math.floor(Math.random() * 2) + 3);
+        } else {
+            pitch += (Math.floor(Math.random() * 2) + 2)
+        }
+    }
     return pitch;
 }
 
@@ -78,19 +102,84 @@ function loadNotes() {
     currentPitchArray = [];
     while (calculateNoteNumber() !== notePosition) {
         let newPitch = getRandomPitch();
-        while (newPitch === currentPitch || newPitch[0] != clef[0]) {
+        while (newPitch === currentPitch) {
             newPitch = getRandomPitch();
         }
         currentPitch = newPitch;
         note = document.createElement("span");
         note.classList.add("note");
         note.classList.add(currentPitch);
-        if (currentPitch === "bD4" || currentPitch === "bF2" || currentPitch === "vD4" || currentPitch === "vB5") {
+        if (currentPitch === "D4" || currentPitch === "F2" || currentPitch === "B5" || currentPitch === "H5") {
             note.classList.add("ledger_line_below");
-        } else if (currentPitch === "bD2" || currentPitch === "bD4" || currentPitch === "vB3" || currentPitch === "vG5") {
+        } else if (currentPitch === "D2" || currentPitch === "B3" || currentPitch === "H3" || currentPitch === "G5") {
             note.classList.add("ledger_line_above");
-        } else if (currentPitch === "bE2" || currentPitch === "bC4" || currentPitch === "vC4" || currentPitch === "vA5") {
+        } else if (currentPitch === "E2" || currentPitch === "C4" || currentPitch === "A5") {
             note.classList.add("ledger_line_center");
+        }
+        if (clef === "bass") {
+            if (currentPitch === "D2") {
+                note.style.top = "90px";
+            } else if (currentPitch === "E2") {
+                note.style.top = "82.5px";
+            } else if (currentPitch === "F2") {
+                note.style.top = "75px";
+            } else if (currentPitch === "G2") {
+                note.style.top = "67.5px";
+            } else if (currentPitch === "A2") {
+                note.style.top = "60px";
+            } else if (currentPitch === "B2" || currentPitch === "H2") {
+                note.style.top = "52.5px";
+            } else if (currentPitch === "C3") {
+                note.style.top = "45px";
+            } else if (currentPitch === "D3") {
+                note.style.top = "37.5px";
+            } else if (currentPitch === "E3") {
+                note.style.top = "30px";
+            } else if (currentPitch === "F3") {
+                note.style.top = "22.5px";
+            } else if (currentPitch === "G3") {
+                note.style.top = "15px";
+            } else if (currentPitch === "A3") {
+                note.style.top = "7.5px";
+            } else if (currentPitch === "B3" || currentPitch === "H3") {
+                note.style.top = "0px";
+            } else if (currentPitch === "C4") {
+                note.style.top = "-7.5px";
+            } else if (currentPitch === "D4") {
+                note.style.top = "-15px";
+            }
+        } else if (clef === "violin") {
+            if (currentPitch === "B3") {
+                note.style.top = "90px";
+            } else if (currentPitch === "C4") {
+                note.style.top = "82.5px";
+            } else if (currentPitch === "D4") {
+                note.style.top = "75px";
+            } else if (currentPitch === "E4") {
+                note.style.top = "67.5px";
+            } else if (currentPitch === "F4") {
+                note.style.top = "60px";
+            } else if (currentPitch === "G4") {
+                note.style.top = "52.5px";
+            } else if (currentPitch === "A4") {
+                note.style.top = "45px";
+            } else if (currentPitch === "B4" || currentPitch === "H4") {
+                note.style.top = "37.5px";
+            } else if (currentPitch === "C5") {
+                note.style.top = "30px";
+            } else if (currentPitch === "D5") {
+                note.style.top = "22.5px";
+            } else if (currentPitch === "E5") {
+                note.style.top = "15px";
+            } else if (currentPitch === "F5") {
+                note.style.top = "7.5px";
+            } else if (currentPitch === "G5") {
+                note.style.top = "0px";
+            } else if (currentPitch === "A5") {
+                note.style.top = "-7.5px";
+            } else if (currentPitch === "B5" || currentPitch === "H5") {
+                note.style.top = "-15px";
+            }
         }
         note.id = notePosition;
         notenspiel.appendChild(note);    
@@ -127,4 +216,5 @@ function startGame() {
     loadNotes();
     noteInput.focus();
     startButton.style.display = "none";
+    einstellungen.style.display = "none";
 }
